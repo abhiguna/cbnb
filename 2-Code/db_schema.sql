@@ -1,5 +1,4 @@
 SET FOREIGN_KEY_CHECKS=0;
-
 DROP TABLE IF EXISTS University;
 DROP TABLE IF EXISTS Dorm;
 DROP TABLE IF EXISTS Room;
@@ -27,7 +26,7 @@ CREATE TABLE Dorm (
 	rooms_available INT,
 	dorm_type VARCHAR(10), /* boys | girls | all */
 	PRIMARY KEY(dorm_id),
-	FOREIGN KEY(uID) REFERENCES University(univ_id)
+	FOREIGN KEY(uID) REFERENCES University(univ_id) ON DELETE CASCADE
 );
 
 CREATE TABLE Room (
@@ -38,7 +37,7 @@ CREATE TABLE Room (
 	next_available_date DATE,
 	max_capacity INT,
 	PRIMARY KEY(room_id),
-	FOREIGN KEY(dID) REFERENCES Dorm(dorm_id)
+	FOREIGN KEY(dID) REFERENCES Dorm(dorm_id) ON DELETE CASCADE
 );
 
 CREATE TABLE Waitlist (
@@ -64,7 +63,8 @@ CREATE TABLE Booking (
 	payment_due DECIMAL(8, 2),
 	wID INT,
 	PRIMARY KEY(gID, rID, dID, booking_date),
-	FOREIGN KEY (gID) REFERENCES Guest(guest_id),
+	FOREIGN KEY (gID) REFERENCES Guest(guest_id)
+		ON DELETE CASCADE,
 	FOREIGN KEY (rID) REFERENCES Room(room_id),
 	FOREIGN KEY (dID) REFERENCES Dorm(dorm_id),
 	FOREIGN KEY (wID) REFERENCES Waitlist(waitlist_id)
