@@ -31,6 +31,7 @@ CREATE TABLE Dorm (
 
 CREATE TABLE Room (
 	room_id INT NOT NULL,
+	room_num INT NOT NULL,
 	dID INT,
 	open_date DATE,
 	end_date DATE,
