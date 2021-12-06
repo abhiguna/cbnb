@@ -1,11 +1,11 @@
 DROP PROCEDURE IF EXISTS sort_dname;
-DELIMITER $$ CREATE PROCEDURE store_dname(OUT dname VARCHAR(30)) -- Write your procedure content below
+DELIMITER $$ CREATE PROCEDURE store_dname() -- Write your procedure content below
 BEGIN
-SELECT Dorm.name
---     Dorm.address,
---     Dorm.total_guests,
---     Dorm.rooms_available,
---     Dorm.dorm_type
+SELECT Dorm.name,
+    Dorm.address,
+    Dorm.total_guests,
+    Dorm.rooms_available,
+    Dorm.dorm_type
 INTO dname
 FROM Dorm
 GROUP BY dorm_id
