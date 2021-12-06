@@ -6,7 +6,6 @@ SELECT Dorm.name,
     Dorm.total_guests,
     Dorm.rooms_available,
     Dorm.dorm_type
-INTO dname
 FROM Dorm
 GROUP BY dorm_id
 ORDER BY Dorm.name;
