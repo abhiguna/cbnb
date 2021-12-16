@@ -6,9 +6,6 @@ import javax.persistence.*;
 @Table(name = "Dorm")
 public class Dorm {
     @Id
-    @Column(name = "dorm_id")
-    private Long id;
-
     @Column(name = "name")
     private String name;
 
@@ -16,7 +13,7 @@ public class Dorm {
     private String address;
 
     @Column(name = "uID")
-    private Long uid;
+    private String uid;
 
     @Column(name = "total_guests")
     private int totalGuests;
@@ -30,22 +27,13 @@ public class Dorm {
     public Dorm() {
     }
 
-    public Dorm(Long id, String name, String address, Long uid, int totalGuests, int roomsAvail, String dormType) {
-        this.id = id;
+    public Dorm(String name, String address, String uid, int totalGuests, int roomsAvail, String dormType) {
         this.name = name;
         this.address = address;
         this.uid = uid;
         this.totalGuests = totalGuests;
         this.roomsAvail = roomsAvail;
         this.dormType = dormType;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -64,11 +52,11 @@ public class Dorm {
         this.address = address;
     }
 
-    public Long getUid() {
+    public String getUid() {
         return uid;
     }
 
-    public void setUid(Long uid) {
+    public void setUid(String uid) {
         this.uid = uid;
     }
 
@@ -99,8 +87,7 @@ public class Dorm {
     @Override
     public String toString() {
         return "Dorm{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", uid=" + uid +
                 ", totalGuests=" + totalGuests +
