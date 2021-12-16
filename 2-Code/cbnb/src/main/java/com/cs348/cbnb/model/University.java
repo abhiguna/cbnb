@@ -6,9 +6,6 @@ import javax.persistence.*;
 @Table(name = "University")
 public class University {
     @Id
-    @Column(name = "univ_id")
-    private Long id;
-
     @Column(name = "name")
     private String name;
 
@@ -31,22 +28,13 @@ public class University {
 
     }
 
-    public University(Long id, String name, String city, String state, String country, int buildingCnt, int guestCnt) {
-        this.id = id;
+    public University(String name, String city, String state, String country, int buildingCnt, int guestCnt) {
         this.name = name;
         this.city = city;
         this.state = state;
         this.country = country;
         this.buildingCnt = buildingCnt;
         this.guestCnt = guestCnt;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -100,8 +88,7 @@ public class University {
     @Override
     public String toString() {
         return "University{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
                 ", country='" + country + '\'' +
