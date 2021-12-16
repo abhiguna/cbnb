@@ -30,15 +30,15 @@ CREATE TABLE Dorm (
 );
 
 CREATE TABLE Room (
-	room_id INT NOT NULL,
-	room_num INT NOT NULL,
-	dID INT,
-	open_date DATE,
-	end_date DATE,
-	next_available_date DATE,
-	max_capacity INT,
-	PRIMARY KEY(room_id),
-	FOREIGN KEY(dID) REFERENCES Dorm(dorm_id) ON DELETE CASCADE
+    room_id VARCHAR(50) NOT NULL,
+    room_num INT NOT NULL,
+    dID VARCHAR(30),
+    open_date DATE,
+    end_date DATE,
+    next_available_date DATE,
+    max_capacity INT,
+    PRIMARY KEY(room_id),
+    FOREIGN KEY(dID) REFERENCES Dorm(name) ON DELETE CASCADE
 );
 
 CREATE TABLE Waitlist (
@@ -54,29 +54,22 @@ CREATE TABLE Waitlist (
 );
 
 CREATE TABLE Booking (
-	gID INT NOT NULL,
-	rID INT NOT NULL,
-	dID INT NOT NULL,
-	booking_date DATE NOT NULL, /* Format: YYYY-MM-DD */
-	booking_start DATE,
-	booking_end DATE,
-	num_guests INT,
-	payment_due DECIMAL(8, 2),
-	wID INT,
-	PRIMARY KEY(gID, rID, dID, booking_date),
-	FOREIGN KEY (gID) REFERENCES Guest(guest_id)
-		ON DELETE CASCADE,
-	FOREIGN KEY (rID) REFERENCES Room(room_id),
-	FOREIGN KEY (dID) REFERENCES Dorm(dorm_id),
-	FOREIGN KEY (wID) REFERENCES Waitlist(waitlist_id)
-
+    gID VaRCHAR(50) NOT NULL,
+    rID VARCHAR(50) NOT NULL,
+    dID VARCHAR(30) NOT NULL,
+    booking_date DATE NOT NULL, /* Format: YYYY-MM-DD */
+    num_guests INT,
+    PRIMARY KEY(gID, rID, dID, booking_date),
+    FOREIGN KEY (gID) REFERENCES Guest(guest_id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (rID) REFERENCES Room(room_id),
+    FOREIGN KEY (dID) REFERENCES Dorm(name)
 );
 
 CREATE TABLE Guest (
-	guest_id INT NOT NULL,
-	name VARCHAR(30),
-	email VARCHAR(50),
-	PRIMARY KEY(guest_id)
+    guest_id VARCHAR(50) NOT NULL,
+    name VARCHAR(30),
+    PRIMARY KEY(guest_id)
 );
 
 SET FOREIGN_KEY_CHECKS=1;
