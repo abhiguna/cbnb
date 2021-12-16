@@ -9,10 +9,13 @@ import java.util.Date;
 public class Room {
     @Id
     @Column(name = "room_id")
-    private Long id;
+    private String roomId;
+
+    @Column(name = "room_num")
+    private Long roomNum;
 
     @Column(name = "dID")
-    private Long dormId;
+    private String dormId;
 
     @Column(name = "open_date")
     private LocalDate openDate;
@@ -29,8 +32,9 @@ public class Room {
     public Room() {
     }
 
-    public Room(Long id, Long dormId, LocalDate openDate, LocalDate endDate, LocalDate nextAvailDate, int maxCapacity) {
-        this.id = id;
+    public Room(Long roomNum, String dormId, LocalDate openDate, LocalDate endDate, LocalDate nextAvailDate, int maxCapacity) {
+        this.roomId = dormId + " " + roomNum;
+        this.roomNum = roomNum;
         this.dormId = dormId;
         this.openDate = openDate;
         this.endDate = endDate;
@@ -38,19 +42,27 @@ public class Room {
         this.maxCapacity = maxCapacity;
     }
 
-    public Long getId() {
-        return id;
+    public String getRoomId() {
+        return roomId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
     }
 
-    public Long getDormId() {
+    public Long getRoomNum() {
+        return roomNum;
+    }
+
+    public void setRoomNum(Long roomNum) {
+        this.roomNum = roomNum;
+    }
+
+    public String getDormId() {
         return dormId;
     }
 
-    public void setDormId(Long dormId) {
+    public void setDormId(String dormId) {
         this.dormId = dormId;
     }
 
@@ -89,7 +101,7 @@ public class Room {
     @Override
     public String toString() {
         return "Room{" +
-                "id=" + id +
+                "roomNum=" + roomNum +
                 ", dormId=" + dormId +
                 ", openDate=" + openDate +
                 ", endDate=" + endDate +
